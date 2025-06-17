@@ -49,6 +49,13 @@ playground.xcworkspace
 .build/
 .swiftpm/
 
+# macOS
+.DS_Store
+
+# IDE
+*.xcuserstate
+*.xcuserdatad/
+
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However

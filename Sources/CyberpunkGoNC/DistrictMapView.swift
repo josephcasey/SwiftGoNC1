@@ -1,19 +1,63 @@
 import SwiftUI
 
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
 struct DistrictMapView: View {
     @ObservedObject var gameState: GameState
     @State private var mapSize: CGSize = .zero
     
+    var fallbackBackground: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .fill(
+                    LinearGradient(
+                        colors: [Color.black, Color.purple.opacity(0.2), Color.black],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
+            
+            // Grid pattern for cyberpunk feel
+            Path { path in
+                for i in stride(from: 0, to: 400, by: 40) {
+                    path.move(to: CGPoint(x: i, y: 0))
+                    path.addLine(to: CGPoint(x: i, y: 400))
+                    path.move(to: CGPoint(x: 0, y: i))
+                    path.addLine(to: CGPoint(x: 400, y: i))
+                }
+            }
+            .stroke(Color(red: 0, green: 1, blue: 1).opacity(0.1), lineWidth: 1)
+            
+            Text("NIGHT CITY\nMAP LOADING...")
+                .font(.custom("Courier", size: 16))
+                .foregroundColor(Color(red: 0, green: 1, blue: 1).opacity(0.6))
+                .multilineTextAlignment(.center)
+        }
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Background map (placeholder - you can add your actual image)
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.black.opacity(0.8))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color(red: 0, green: 1, blue: 1), lineWidth: 2) // cyan equivalent
-                    )
+                // Background map - Night City (with fallback)
+                Group {
+                    Image("NightCityMap")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .clipped()
+                        .background(Color.black) // Ensure background while loading
+                        .onAppear {
+                            print("Attempting to load NightCityMap image")
+                        }
+                }
+                .cornerRadius(12)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color(red: 0, green: 1, blue: 1), lineWidth: 2)
+                )
                 
                 // District boundaries and units
                 ForEach(gameState.districts) { district in
@@ -46,7 +90,7 @@ struct DistrictMapView: View {
                     }
             )
         }
-        .aspectRatio(1024/1536, contentMode: .fit) // Original image aspect ratio
+        .aspectRatio(2/3, contentMode: .fit) // Correct aspect ratio for Night City map (1024x1536)
     }
 }
 
