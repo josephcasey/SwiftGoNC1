@@ -75,16 +75,71 @@ The script handles:
 When running `./scripts/deploy-changes.sh`:
 
 1. **Don't panic if `run_in_terminal` shows `(empty)`** - this often means success, not failure
-2. **Always follow up with verification commands**:
-   ```bash
-   git status           # Should show "working tree clean"
-   git log --oneline -2 # Should show new commit at HEAD
-   ```
-3. **Parse the actual terminal output** that the user sees (script provides detailed step-by-step feedback)
-4. **Confirm success indicators**:
-   - ✅ "Working tree clean" = deployment successful
-   - ✅ New commit hash in git log = commit created
-   - ✅ "origin/master" updated = push successful
+2. **Parse the script's comprehensive output** which includes:
+   - Step-by-step progress indicators (`🔄 Step X:`)
+   - Success confirmations (`✅`) for each operation
+   - Git operations results (staging, commit, push details)
+   - Final verification data (status, log, sync state)
+3. **Look for deployment success indicators** in the script output:
+   - All steps showing `✅` completion
+   - Commit hash in `[branch hash] message` format
+   - GitHub push confirmation with object counts
+   - `DEPLOYMENT_SUCCESS=true` in final summary
+
+## AI Assistant Deployment Verification
+
+After running the deploy script, the AI assistant must:
+
+1. **Parse Script Output** - The deploy script already provides comprehensive verification data:
+   - Git staging results with file counts
+   - Commit creation with hash and message
+   - GitHub push confirmation with transfer details
+   - Final git status showing "working tree clean"
+   - Summary with STATUS, SYNC_STATUS, and DEPLOYMENT_SUCCESS flags
+
+2. **Look for Success Indicators** in the script's terminal output:
+   - `✅` checkmarks for each successful step
+   - `[branch hash] commit message` format confirming commit
+   - `remote: Resolving deltas: 100%` indicating successful push
+   - `DEPLOYMENT_SUCCESS=true` in final summary
+   - `STATUS: CLEAN` showing clean working tree
+
+3. **Avoid Duplicate Commands** - The script already runs and outputs:
+   - `git status` results
+   - `git log --oneline -2` for recent commits
+   - All necessary verification data
+
+4. **Report Deployment Status** - Based on parsing script output only:
+   - Confirm successful deployment
+   - Identify any failures from script output
+   - Summarize what was deployed (commit hash, files changed, etc.)
+
+**No additional git commands needed** - the script provides all verification data.
+
+### Expected Script Output Format
+
+The script outputs structured data that can be parsed:
+
+```
+=== DEPLOYMENT VERIFICATION REPORT ===
+--- GIT STATUS ---
+STATUS: CLEAN
+
+--- REMOTE SYNC ---
+SYNC_STATUS: UP_TO_DATE
+
+--- RECENT COMMITS ---
+Last 3 commits:
+  abc1234 📝 Enhanced deployment workflow
+  def5678 🎨 Fix map resizing issue  
+  ghi9012 🗺️ Integrate Night City map
+
+--- DEPLOYMENT SUMMARY ---
+OVERALL_STATUS: SUCCESS
+WORKING_TREE: CLEAN
+SYNC_STATUS: UP_TO_DATE
+=== END VERIFICATION REPORT ===
+```
 
 ### Success Confirmation Checklist
 

@@ -119,10 +119,10 @@ The app includes initial game state with:
 ## 🛠 Recent Improvements
 
 ### Enhanced Deployment Workflow (Latest)
-- **🔧 Improved Script Output** - Deploy script now outputs structured verification report for AI analysis
-- **📊 Better Terminal Integration** - Script provides SUCCESS/FAILURE status that AI can parse
-- **🔍 Comprehensive Verification** - Git status, remote sync, build verification, and project structure checks
-- **🤖 AI-Driven Analysis** - Agent rules updated to properly analyze deployment results
+- **📝 Streamlined Process** - Refined two-step deployment: AI updates README, script handles git operations
+- **🔍 Smart Output Parsing** - Agent rules now parse deploy script output instead of running duplicate git commands
+- **⚡ Efficient Verification** - Script provides comprehensive git status, avoiding redundant terminal interactions
+- **🎯 Focused Automation** - Removed build/test verification from deploy script (handled separately with AI)
 
 ### Layout Optimization
 - **🎨 Fixed Map Resizing Issue** - Map now maintains consistent size when district info panel expands

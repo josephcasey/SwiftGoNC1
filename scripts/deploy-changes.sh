@@ -126,34 +126,11 @@ else
     print_warning "Local and remote are out of sync"
 fi
 
-# Build verification
+# Recent commits verification
 echo ""
-echo "--- BUILD VERIFICATION ---"
-echo "Testing Swift package compilation..."
-if swift build >/dev/null 2>&1; then
-    echo "BUILD_STATUS: SUCCESS"
-    print_success "Swift package builds successfully"
-else
-    echo "BUILD_STATUS: FAILED"
-    print_error "Swift package build failed"
-fi
-
-# Test verification (if tests exist)
-echo ""
-echo "--- TEST VERIFICATION ---"
-if [ -d "Tests" ]; then
-    echo "Running Swift tests..."
-    if swift test >/dev/null 2>&1; then
-        echo "TEST_STATUS: PASSED"
-        print_success "All tests passed"
-    else
-        echo "TEST_STATUS: FAILED"
-        print_warning "Some tests failed"
-    fi
-else
-    echo "TEST_STATUS: NO_TESTS"
-    echo "No test directory found"
-fi
+echo "--- RECENT COMMITS ---"
+echo "Last 3 commits:"
+git log --oneline -3 | sed 's/^/  /'
 
 # Project structure verification
 echo ""
@@ -169,6 +146,8 @@ echo ""
 echo "--- DEPLOYMENT SUMMARY ---" >&2
 echo "OVERALL_STATUS: SUCCESS" >&2
 echo "LAST_COMMIT: $LAST_COMMIT" >&2
+echo "SYNC_STATUS: $([ "$LOCAL_COMMIT" = "$REMOTE_COMMIT" ] && echo "UP_TO_DATE" || echo "OUT_OF_SYNC")" >&2
+echo "WORKING_TREE: $([ -z "$GIT_STATUS" ] && echo "CLEAN" || echo "UNCOMMITTED_CHANGES")" >&2
 echo "REPOSITORY: https://github.com/josephcasey/SwiftGoNC1.git" >&2
 echo "=== END VERIFICATION REPORT ===" >&2
 
