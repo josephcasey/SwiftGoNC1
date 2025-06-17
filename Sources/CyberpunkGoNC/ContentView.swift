@@ -14,28 +14,18 @@ struct ContentView: View {
                 )
                 .ignoresSafeArea()
                 
-                VStack(spacing: 20) {
-                    // Header
-                    VStack {
-                        Text("NIGHT CITY")
-                            .font(.custom("Courier", size: 32))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color(red: 0, green: 1, blue: 1)) // cyan equivalent
-                            .textCase(.uppercase)
+                GeometryReader { geometry in
+                    VStack(spacing: 0) {
+                        // Interactive District Map (Fixed height to prevent resizing)
+                        DistrictMapView(gameState: gameState)
+                            .frame(height: geometry.size.height * 0.65) // 65% of available height
+                            .padding(.top, 10)
                         
-                        Text("Gang Territory Control")
-                            .font(.custom("Courier", size: 16))
-                            .foregroundColor(.white.opacity(0.8))
+                        // Game Controls (Flexible space for district info)
+                        GameControlsView(gameState: gameState)
+                            .padding(.horizontal)
+                            .frame(maxHeight: .infinity, alignment: .top)
                     }
-                    .padding(.top)
-                    
-                    // Interactive District Map
-                    DistrictMapView(gameState: gameState)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    // Game Controls
-                    GameControlsView(gameState: gameState)
-                        .padding(.horizontal)
                 }
                 .padding()
             }
