@@ -68,7 +68,31 @@ The script handles:
 2. **Document the WHY** not just the what - explain user impact
 3. **Keep technical details** accurate and current
 4. **Use clear, concise language** for user-facing documentation
-5. **Verify the script ran successfully** by checking git status after deployment
+5. **Verify deployment success** by checking git status after script execution
+
+### Terminal Output Analysis Protocol
+
+When running `./scripts/deploy-changes.sh`:
+
+1. **Don't panic if `run_in_terminal` shows `(empty)`** - this often means success, not failure
+2. **Always follow up with verification commands**:
+   ```bash
+   git status           # Should show "working tree clean"
+   git log --oneline -2 # Should show new commit at HEAD
+   ```
+3. **Parse the actual terminal output** that the user sees (script provides detailed step-by-step feedback)
+4. **Confirm success indicators**:
+   - ✅ "Working tree clean" = deployment successful
+   - ✅ New commit hash in git log = commit created
+   - ✅ "origin/master" updated = push successful
+
+### Success Confirmation Checklist
+
+After running deploy script, AI must verify:
+- [ ] `git status` shows clean working tree
+- [ ] `git log` shows new commit with expected message
+- [ ] No error messages in terminal output
+- [ ] All expected files were committed
 
 ## Rules for Developer
 

@@ -118,7 +118,13 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Layout Optimization (Latest)
+### Enhanced Deployment Workflow (Latest)
+- **🔧 Improved Script Output** - Deploy script now outputs structured verification report for AI analysis
+- **📊 Better Terminal Integration** - Script provides SUCCESS/FAILURE status that AI can parse
+- **🔍 Comprehensive Verification** - Git status, remote sync, build verification, and project structure checks
+- **🤖 AI-Driven Analysis** - Agent rules updated to properly analyze deployment results
+
+### Layout Optimization
 - **🎨 Fixed Map Resizing Issue** - Map now maintains consistent size when district info panel expands
 - **📱 Better Screen Space Usage** - Removed redundant "NIGHT CITY Gang Territory Control" header
 - **🗺️ Optimized Map Position** - Map positioned higher on screen for better visibility
