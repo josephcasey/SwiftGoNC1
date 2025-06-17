@@ -36,6 +36,17 @@ Create well-formatted commits with conventional commit messages and emojis.
 7. Add body for complex changes explaining why
 8. Execute commit
 
+## ⚠️ MULTILINE COMMIT WARNING:
+**ALWAYS warn the user:** If using multiline commit messages with `git commit -m "..."`, 
+the user may get stuck at a ">" prompt. If that happens:
+- Type a closing quote (") and press Enter to complete
+- Or press Ctrl+C to cancel and try a simpler message
+
+**Safer alternatives:**
+- Use single-line messages: `git commit -m "message"`
+- Use multiple `-m` flags: `git commit -m "title" -m "description"`
+- Use `git commit` (opens editor) for complex messages
+
 ## Best Practices:
 - Keep commits atomic and focused
 - Write in imperative mood ("Add feature" not "Added feature")

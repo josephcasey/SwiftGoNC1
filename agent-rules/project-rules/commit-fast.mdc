@@ -20,3 +20,7 @@ Follow conventional commit format with appropriate emojis and create descriptive
 - 🎨 style: Code formatting, missing semicolons, etc.
 - ⚡️ perf: Performance improvements
 - ✅ test: Adding or correcting tests
+
+## ⚠️ MULTILINE COMMIT WARNING:
+**ALWAYS use single-line commit messages** to avoid getting stuck at ">" prompts.
+Use `git commit -m "single line message"` format only for fast commits.
