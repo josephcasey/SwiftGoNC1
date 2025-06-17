@@ -116,6 +116,19 @@ The app includes initial game state with:
 ✅ **Better Performance** - Native Swift vs web-based solution  
 ✅ **iOS Features** - Haptics, notifications, background processing  
 
+## 🛠 Recent Improvements
+
+### Layout Optimization (Latest)
+- **🎨 Fixed Map Resizing Issue** - Map now maintains consistent size when district info panel expands
+- **📱 Better Screen Space Usage** - Removed redundant "NIGHT CITY Gang Territory Control" header
+- **🗺️ Optimized Map Position** - Map positioned higher on screen for better visibility
+- **📊 Enhanced District Info** - More space allocated for gang unit details and territory information
+
+### Night City Map Integration
+- **🗺️ Authentic Background** - Integrated high-quality Night City map (2.6MB) from original game assets
+- **🎯 Perfect Scaling** - Proper 2:3 aspect ratio maintains map proportions
+- **🔄 Smart Fallback** - Graceful handling of missing images with cyberpunk-styled placeholder
+
 ## 🛠 Next Steps
 
 1. **✅ Authentic Night City Map** - Successfully integrated high-quality background image

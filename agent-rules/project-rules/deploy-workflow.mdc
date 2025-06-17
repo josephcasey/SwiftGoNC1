@@ -1,0 +1,78 @@
+# Deployment Workflow
+
+## Two-Step Deployment Process
+
+For all code changes and feature additions to the CyberpunkGoNC iOS app, follow this standardized two-step deployment workflow:
+
+### Step 1: Documentation Update (AI-Driven)
+**Before running any deployment scripts**, the AI assistant must:
+
+1. **Analyze the changes made** - Review what code was modified, what features were added/fixed
+2. **Update README.md** with:
+   - Brief description of the changes in the appropriate section
+   - Technical details about the implementation
+   - User-facing improvements or bug fixes
+   - Any new features or capabilities added
+3. **Verify documentation accuracy** - Ensure the README reflects the current state of the app
+
+### Step 2: Automated Deployment (Script-Driven)
+**After README is updated**, run the deployment script:
+
+```bash
+./scripts/deploy-changes.sh "Brief commit title" "Detailed commit description"
+```
+
+The script handles:
+- ✅ Staging all changes (including updated README)
+- ✅ Verification of staging
+- ✅ Single-line commit with proper formatting
+- ✅ Commit verification
+- ✅ Push to GitHub
+- ✅ Final verification of clean working tree
+
+## Why This Two-Step Process?
+
+### Step 1 (AI) Handles:
+- **Contextual understanding** of what changed and why
+- **Technical documentation** that requires reasoning about code changes
+- **User impact assessment** - how changes affect the user experience
+- **Maintaining documentation quality** and consistency
+
+### Step 2 (Script) Handles:
+- **Mechanical git operations** that can be automated
+- **Error checking** and verification at each step
+- **Consistent commit formatting** and messaging
+- **Safe deployment** with rollback capabilities
+
+## Example Workflow
+
+```bash
+# 1. AI updates README.md with change description
+# (This happens through the AI assistant)
+
+# 2. Run deployment script
+./scripts/deploy-changes.sh "🎨 Fix map resizing issue" "Removed header, fixed map height to prevent resizing when district info panel expands"
+```
+
+## Benefits
+
+- **Consistency**: Every deployment follows the same pattern
+- **Documentation**: README always stays current with changes
+- **Safety**: Each step is verified before proceeding
+- **Efficiency**: Automation handles repetitive tasks
+- **Quality**: AI reasoning ensures meaningful documentation
+
+## Rules for AI Assistant
+
+1. **ALWAYS update README.md first** before suggesting deployment
+2. **Document the WHY** not just the what - explain user impact
+3. **Keep technical details** accurate and current
+4. **Use clear, concise language** for user-facing documentation
+5. **Verify the script ran successfully** by checking git status after deployment
+
+## Rules for Developer
+
+1. **Never skip Step 1** - documentation is not optional
+2. **Review README changes** before running deployment script
+3. **Use descriptive commit messages** that match the README updates
+4. **Verify app functionality** before deploying changes
