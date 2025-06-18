@@ -134,6 +134,14 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
+### Enhanced District Intelligence Panel (Dec 28, 2024)
+- **📊 Comprehensive Unit Analytics** - District info now shows total unit count and gang dominance ratios
+- **🎯 Strategic Intelligence** - Clear display of which gang dominates each district with unit count comparison  
+- **🎮 Enhanced Unit Breakdown** - Vertical layout with tactical roles (ASSAULT, SUPPORT, CYBER, RECON) for each unit type
+- **🔧 Visual Unit Indicators** - Unit dots with gang colors and type-specific border colors, enhanced with tactical symbols
+- **📈 Smart Gang Sorting** - Gangs automatically sorted by unit count within each district for strategic clarity
+- **⚡ Improved Information Hierarchy** - Better visual organization with clear count displays and tactical role descriptions
+
 ### Smart Unit Placement & Drone Enhancements (Jun 18, 2025)
 - **🧠 Intelligent Unit Positioning** - Implemented size-aware placement algorithm that prevents unit overlaps
 - **📏 Dynamic Spacing** - Radius calculation considers unit sizes (16px standard, 8px drones) with 4px minimum spacing
