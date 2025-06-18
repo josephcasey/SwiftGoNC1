@@ -117,7 +117,8 @@ struct DistrictView: View {
                         gang: gang,
                         units: units,
                         center: scalePoint(district.center, to: mapSize),
-                        mapSize: mapSize
+                        mapSize: mapSize,
+                        gameState: gameState
                     )
                 }
             }
@@ -163,6 +164,7 @@ struct GangUnitsView: View {
     let units: [Unit]
     let center: CGPoint
     let mapSize: CGSize
+    @ObservedObject var gameState: GameState
     
     // Function to get unit size based on type (matching UnitView)
     private func sizeForUnitType(_ unitType: UnitType) -> CGFloat {
@@ -176,7 +178,7 @@ struct GangUnitsView: View {
     
     var body: some View {
         ForEach(Array(units.enumerated()), id: \.element.id) { index, unit in
-            UnitView(unit: unit, gang: gang)
+            UnitView(unit: unit, gang: gang, gameState: gameState)
                 .position(unitPosition(for: index, unit: unit))
         }
     }
@@ -210,6 +212,7 @@ struct GangUnitsView: View {
 struct UnitView: View {
     let unit: Unit
     let gang: Gang
+    @ObservedObject var gameState: GameState
     
     // Function to get border color based on unit type
     private func borderColorForUnitType(_ unitType: UnitType) -> Color {
@@ -235,18 +238,47 @@ struct UnitView: View {
         }
     }
     
+    // Check if this unit should be highlighted based on selected action disc
+    private var shouldHighlight: Bool {
+        guard gang.id == "maelstrom", // Assuming player is Maelstrom
+              let selectedDisc = gameState.selectedActionDisc else {
+            return false
+        }
+        
+        switch selectedDisc.type {
+        case .activateSolos:
+            return unit.type == .solo
+        case .activateTechies:
+            return unit.type == .techie || unit.type == .drone // Drones are controlled by techies
+        case .activateNetrunners:
+            return unit.type == .netrunner
+        default:
+            return false // Other actions don't directly affect specific unit types
+        }
+    }
+    
     var body: some View {
         ZStack {
+            // Drop shadow background for better visibility
+            Circle()
+                .fill(Color.black.opacity(0.4))
+                .frame(width: sizeForUnitType(unit.type) + 2, height: sizeForUnitType(unit.type) + 2)
+                .offset(x: 2, y: 2)
+            
             // Main unit circle with colored border matching action disc
             Circle()
                 .fill(gang.color)
                 .frame(width: sizeForUnitType(unit.type), height: sizeForUnitType(unit.type))
                 .overlay(
                     Circle()
-                        .stroke(borderColorForUnitType(unit.type), lineWidth: 2)
+                        .stroke(
+                            shouldHighlight ? borderColorForUnitType(unit.type) : borderColorForUnitType(unit.type).opacity(0.8),
+                            lineWidth: shouldHighlight ? 3 : 2
+                        )
                 )
-            
-            // Unit type indicator (remove drone-specific indicator since size differentiates)
+                .scaleEffect(shouldHighlight ? 1.2 : 1.0)
+                .shadow(color: shouldHighlight ? borderColorForUnitType(unit.type).opacity(0.8) : Color.clear, radius: shouldHighlight ? 6 : 0)
+                .animation(.easeInOut(duration: 0.3), value: shouldHighlight)
         }
     }
 }

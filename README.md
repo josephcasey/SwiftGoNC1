@@ -134,7 +134,15 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Codified Commit ID Timing Pattern (Jun 18, 2025)
+### Enhanced Unit Visibility & Maelstrom Interactive Gameplay (Jun 18, 2025)
+- **🎯 Drop Shadow Enhancement** - Added subtle drop shadows to unit dots for better visibility against Night City background
+- **⚡ Maelstrom Player Mode** - Assumed player controls Maelstrom gang for interactive unit highlighting
+- **🎮 Action Disc Unit Highlighting** - Units glow and scale up when their corresponding action disc is selected
+- **🔧 Smart Unit Mapping** - ACTIVATE SOLOS highlights solos, ACTIVATE TECHIES highlights techies and drones, ACTIVATE NETRUNNERS highlights netrunners
+- **✨ Visual Feedback System** - Selected units show enhanced borders, glow effects, and smooth scaling animations
+- **🎨 Improved Contrast** - Drop shadows and enhanced borders make units more distinct from map background
+
+### Codified Commit ID Timing Pattern (Jun 18, 2025) - `d7c0f5f`
 - **📝 README Update Logic Fix** - Corrected commit ID timing to only add hashes to previous entries, not current ones
 - **⏰ Retroactive Hash Assignment** - New entries remain without commit hash until subsequent deployment cycle
 - **📋 Workflow Documentation** - Updated deploy-workflow.mdc with clear commit ID timing rules and examples
