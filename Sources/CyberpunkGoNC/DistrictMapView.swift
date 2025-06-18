@@ -121,16 +121,6 @@ struct DistrictView: View {
                     )
                 }
             }
-            
-            // District name label
-            Text(district.name)
-                .font(.custom("Courier", size: 12))
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding(4)
-                .background(Color.black.opacity(0.7))
-                .cornerRadius(4)
-                .position(scalePoint(district.center, to: mapSize))
         }
     }
     

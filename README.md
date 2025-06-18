@@ -118,6 +118,13 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
+### Development Pipeline Automation (Latest)
+- **🔧 Build-Test-Install Script** - Comprehensive automation for Swift build, testing, Xcode compilation, and simulator deployment
+- **🎯 Separated Concerns** - build-test-install.sh handles development testing, deploy-changes.sh handles git operations
+- **⚡ 8-Step Pipeline** - Automated: package build → tests → Xcode build → app location → simulator boot → install → launch → verify
+- **🧹 Clean UI** - Removed redundant district name text overlays (names visible in Night City map graphic)
+- **📱 Streamlined Testing** - One command deploys updated app to simulator for immediate testing
+
 ### Enhanced Deployment Workflow (Latest)
 - **📝 Streamlined Process** - Refined two-step deployment: AI updates README, script handles git operations
 - **🔍 Smart Output Parsing** - Agent rules now parse deploy script output instead of running duplicate git commands
