@@ -22,8 +22,10 @@ For all code changes and feature additions to the CyberpunkGoNC iOS app, follow 
 3. **Update README.md** using the git information from build-test-install:
    - Add NEW entry to "Recent Improvements" section at the END of the README
    - Place new improvements at the TOP of the Recent Improvements list (reverse chronological order)
-   - Use format for new entry: "### [Feature Name] (MMM DD, YYYY)" (use current date from git info, no commit hash until after deployment)
-   - Update previous entries with git commit hashes from the git interrogation output
+   - Use format for new entry: "### [Feature Name] (MMM DD, YYYY)" (use current date from git info, NO commit hash until next deployment)
+   - **IMPORTANT: Commit ID Rule** - Only add commit hash to the PREVIOUS entry (not the current one being added)
+   - Look for the MOST RECENT entry that lacks a commit hash and add it using the git interrogation output
+   - The current new entry being added should NOT get a commit hash until the subsequent deployment
    - Include technical details about the implementation
    - Document user-facing improvements or bug fixes
    - Explain any new features or capabilities added
@@ -36,6 +38,13 @@ For all code changes and feature additions to the CyberpunkGoNC iOS app, follow 
 - Most recent entry MUST have "(Latest)" suffix
 - Previous entries should NOT have "(Latest)" suffix
 - Use consistent formatting with bullet points and emoji indicators
+
+**Commit ID Timing Pattern:**
+- **New entries**: No commit hash initially (format: "### Feature Name (MMM DD, YYYY)")
+- **Previous entries**: Add commit hash from git interrogation output (format: "### Feature Name (MMM DD, YYYY) - `abc1234`")
+- **Logic**: Only the PREVIOUS most recent entry without a hash gets updated with its commit ID
+- **Current entry**: Remains without hash until the NEXT deployment cycle
+- **Why**: We can only know the commit hash AFTER the commit is made, so we update retroactively
 
 ### Step 2: Automated Deployment (Script-Driven)
 **After README is updated**, run the deployment script:
@@ -71,13 +80,30 @@ The script handles:
 ```bash
 # 1. Run build-test-install to get git information and test the app
 ./scripts/build-test-install.sh
-# (AI analyzes the git information output for README updates)
+# (Shows current git log including previous commits)
 
 # 2. AI updates README.md with change description using git info
-# (This happens through the AI assistant)
+# - Adds NEW entry: "### Enhanced Feature (Jun 18, 2025)" (no hash)
+# - Updates PREVIOUS entry: "### Previous Feature (Jun 17, 2025) - `abc1234`" (adds hash from git log)
+# - Current "Enhanced Feature" will get its hash added in the NEXT deployment
 
 # 3. Run deployment script
-./scripts/deploy-changes.sh "🎨 Fix map resizing issue" "Removed header, fixed map height to prevent resizing when district info panel expands"
+./scripts/deploy-changes.sh "Enhanced feature with new capabilities"
+```
+
+**README Update Pattern Example:**
+
+Before deployment:
+```markdown
+### Previous Feature (Jun 17, 2025)  # <-- This will get hash added
+### Older Feature (Jun 16, 2025) - `xyz7890`
+```
+
+After README update (before deployment):
+```markdown
+### Enhanced Feature (Jun 18, 2025)  # <-- New entry, no hash yet
+### Previous Feature (Jun 17, 2025) - `abc1234`  # <-- Hash added from git log
+### Older Feature (Jun 16, 2025) - `xyz7890`
 ```
 
 ## Benefits

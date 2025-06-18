@@ -134,7 +134,15 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Enhanced Build-Test-Install with Git Interrogation (Jun 18, 2025)
+### Codified Commit ID Timing Pattern (Jun 18, 2025)
+- **📝 README Update Logic Fix** - Corrected commit ID timing to only add hashes to previous entries, not current ones
+- **⏰ Retroactive Hash Assignment** - New entries remain without commit hash until subsequent deployment cycle
+- **📋 Workflow Documentation** - Updated deploy-workflow.mdc with clear commit ID timing rules and examples
+- **🎯 Logical Deployment Pattern** - Current push gets documented, previous push gets its hash added retroactively
+- **📊 Clear Examples** - Added before/after examples showing proper README update sequence
+- **🔧 Consistency Rules** - Codified that commit hashes are only known AFTER commits are made, so updates happen in next cycle
+
+### Enhanced Build-Test-Install with Git Interrogation (Jun 18, 2025) - `503eeba`
 - **📊 Git Status Integration** - Added comprehensive git information display at end of build-test-install pipeline
 - **📅 Date Standardization** - Provides current date in correct format for README updates
 - **🔍 Commit History Analysis** - Shows recent commits and previous feature commit hash for documentation reference
