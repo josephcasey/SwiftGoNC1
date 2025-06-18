@@ -135,6 +135,13 @@ The app includes initial game state with:
 - **🎯 Perfect Scaling** - Proper 2:3 aspect ratio maintains map proportions
 - **🔄 Smart Fallback** - Graceful handling of missing images with cyberpunk-styled placeholder
 
+### Interactive Action Discs (Latest)
+- **🎮 Action Disc System** - Added 6 interactive action disc types positioned on right side of map
+- **🎯 Game Mechanics** - ACTIVATE SOLOS, TECHIES, NETRUNNERS, BUILD HIDEOUT, UPGRADE CARDS, WILD actions
+- **🎨 Cyberpunk Styling** - Color-coded discs with authentic game aesthetics and touch interaction
+- **⚡ Dynamic Selection** - Real-time selection feedback with visual highlighting
+- **📱 Optimized Layout** - Strategic positioning alongside Night City map for enhanced gameplay
+
 ## 🛠 Next Steps
 
 1. **✅ Authentic Night City Map** - Successfully integrated high-quality background image

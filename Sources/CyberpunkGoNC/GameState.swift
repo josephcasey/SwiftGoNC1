@@ -46,6 +46,54 @@ enum UnitType: String, CaseIterable, Codable {
     }
 }
 
+struct ActionDisc: Identifiable, Codable {
+    let id = UUID()
+    let type: ActionType
+    let isAvailable: Bool
+    
+    var color: Color {
+        switch type {
+        case .activateSolos: return Color.orange
+        case .activateTechies: return Color.green
+        case .activateNetrunners: return Color.blue
+        case .buildHideout: return Color.gray
+        case .upgradeCombatCard: return Color.red
+        case .wild: return Color.purple // Multicolored effect
+        }
+    }
+    
+    var icon: String {
+        switch type {
+        case .activateSolos: return "person.fill"
+        case .activateTechies: return "wrench.and.screwdriver.fill"
+        case .activateNetrunners: return "cpu.fill"
+        case .buildHideout: return "house.fill"
+        case .upgradeCombatCard: return "plus.circle.fill"
+        case .wild: return "star.fill"
+        }
+    }
+}
+
+enum ActionType: String, CaseIterable, Codable {
+    case activateSolos = "activate_solos"
+    case activateTechies = "activate_techies"
+    case activateNetrunners = "activate_netrunners"
+    case buildHideout = "build_hideout"
+    case upgradeCombatCard = "upgrade_combat_card"
+    case wild = "wild"
+    
+    var displayName: String {
+        switch self {
+        case .activateSolos: return "ACTIVATE SOLOS"
+        case .activateTechies: return "ACTIVATE TECHIES"
+        case .activateNetrunners: return "ACTIVATE NETRUNNERS"
+        case .buildHideout: return "BUILD A HIDEOUT"
+        case .upgradeCombatCard: return "UPGRADE A COMBAT CARD"
+        case .wild: return "WILD (TAKE ANY ACTION)"
+        }
+    }
+}
+
 struct Gang: Identifiable, Codable {
     let id: String
     let name: String
@@ -94,9 +142,11 @@ struct Gang: Identifiable, Codable {
 class GameState: ObservableObject {
     @Published var districts: [District] = []
     @Published var gangs: [Gang] = []
+    @Published var actionDiscs: [ActionDisc] = []
     @Published var currentRound: Int = 1
     @Published var currentPhase: String = "Planning"
     @Published var selectedDistrict: District?
+    @Published var selectedActionDisc: ActionDisc?
     
     init() {
         setupInitialGame()
@@ -156,6 +206,9 @@ class GameState: ObservableObject {
         
         // Add some initial units
         setupInitialUnits()
+        
+        // Initialize action discs
+        setupActionDiscs()
     }
     
     private func setupInitialUnits() {
@@ -185,6 +238,12 @@ class GameState: ObservableObject {
                 Unit(type: .netrunner, gangId: "voodoo_boys"),
                 Unit(type: .drone, gangId: "voodoo_boys")
             ]
+        }
+    }
+    
+    private func setupActionDiscs() {
+        actionDiscs = ActionType.allCases.map { type in
+            ActionDisc(type: type, isAvailable: true)
         }
     }
     
@@ -221,5 +280,11 @@ class GameState: ObservableObject {
         }
         
         return inside
+    }
+    
+    func selectActionDisc(_ actionDisc: ActionDisc) {
+        selectedActionDisc = actionDisc
+        // TODO: Implement action disc functionality
+        print("Selected action disc: \(actionDisc.type.displayName)")
     }
 }

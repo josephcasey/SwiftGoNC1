@@ -1,0 +1,71 @@
+# Deploy Command
+
+A slash command to initiate the two-step deployment workflow for CyberpunkGoNC iOS app.
+
+## Usage
+
+`/deploy "<commit_title>" "<commit_description>"`
+
+## What It Does
+
+Executes the standardized two-step deployment process:
+
+### Step 1: Documentation Update (Automatic)
+- AI analyzes recent code changes and their impact
+- Updates README.md with technical details and user benefits
+- Documents new features, bug fixes, or improvements
+- Ensures documentation accuracy and completeness
+
+### Step 2: Automated Deployment (Script)
+- Runs `./scripts/deploy-changes.sh` with provided commit messages
+- Stages all changes including updated README
+- Creates commit with proper formatting
+- Pushes to GitHub with verification
+- Provides comprehensive success/failure feedback
+
+## Examples
+
+```bash
+/deploy "🎮 Add action discs to map" "Added 6 interactive action disc types on right side of map for enhanced game mechanics"
+
+/deploy "🐛 Fix touch detection" "Improved gesture recognition accuracy for district selection on iPhone devices"
+
+/deploy "✨ Add unit animations" "Smooth transitions when units move between districts with cyberpunk-styled effects"
+```
+
+## Process Flow
+
+1. **User types**: `/deploy "title" "description"`
+2. **AI executes**:
+   - Analyzes what code changes were made since last commit
+   - Updates README.md with meaningful documentation
+   - Runs `./scripts/deploy-changes.sh "title" "description"`
+   - Parses deployment output for success verification
+   - Reports deployment status
+
+## Benefits
+
+- **One Command Deployment** - Handles both documentation and git operations
+- **Consistent Process** - Follows established deploy-workflow.mdc rules
+- **Quality Assurance** - Ensures README stays current with changes
+- **Error Handling** - Comprehensive verification and reporting
+- **Efficiency** - Streamlines the development-to-deployment pipeline
+
+## Integration with Existing Workflow
+
+This command integrates seamlessly with:
+- [deploy-workflow.mdc](mdc:deploy-workflow.mdc) - Core deployment rules
+- [commit.mdc](mdc:commit.mdc) - Commit message standards
+- `scripts/deploy-changes.sh` - Automated deployment script
+
+## AI Assistant Behavior
+
+When `/deploy` is triggered, the AI must:
+
+1. **Analyze Changes** - Review modified files and understand impact
+2. **Update Documentation** - Modify README.md with change descriptions
+3. **Execute Deployment** - Run the deploy-changes.sh script
+4. **Parse Results** - Analyze script output for success/failure
+5. **Report Status** - Confirm deployment outcome to user
+
+No additional manual steps required - fully automated deployment pipeline!
