@@ -134,7 +134,14 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Enhanced Unit Visualization (Jun 18, 2025)
+### Smart Unit Placement & Drone Enhancements (Jun 18, 2025)
+- **🧠 Intelligent Unit Positioning** - Implemented size-aware placement algorithm that prevents unit overlaps
+- **📏 Dynamic Spacing** - Radius calculation considers unit sizes (16px standard, 8px drones) with 4px minimum spacing
+- **🚁 Enhanced Drone Design** - Drones now half-size (8px) with green borders matching techie connection
+- **⚡ Scalable Algorithm** - Works with any unit count, automatically expands radius to maintain clear visibility
+- **🎯 Collision Prevention** - Mathematical placement ensures no overlapping regardless of district unit density
+
+### Enhanced Unit Visualization (Jun 18, 2025) - `45bb47c`
 - **🎨 Unit-Action Disc Color Mapping** - Unit borders now match corresponding action disc colors for clear visual connection
 - **🎯 Strategic Clarity** - Orange borders for SOLOS, green for TECHIES, blue for NETRUNNERS, gray for DRONES
 - **🎮 Improved Gameplay UX** - Gang colors preserved in unit centers while borders indicate available actions

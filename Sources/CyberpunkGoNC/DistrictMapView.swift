@@ -164,20 +164,45 @@ struct GangUnitsView: View {
     let center: CGPoint
     let mapSize: CGSize
     
-    var body: some View {
-        ForEach(Array(units.enumerated()), id: \.element.id) { index, unit in
-            UnitView(unit: unit, gang: gang)
-                .position(unitPosition(for: index))
+    // Function to get unit size based on type (matching UnitView)
+    private func sizeForUnitType(_ unitType: UnitType) -> CGFloat {
+        switch unitType {
+        case .drone:
+            return 8 // Half size of regular units
+        default:
+            return 16 // Standard size
         }
     }
     
-    private func unitPosition(for index: Int) -> CGPoint {
-        let angle = Double(index) * (2 * Double.pi / Double(units.count))
-        let radius = min(mapSize.width, mapSize.height) * 0.03 // Adjust spread
+    var body: some View {
+        ForEach(Array(units.enumerated()), id: \.element.id) { index, unit in
+            UnitView(unit: unit, gang: gang)
+                .position(unitPosition(for: index, unit: unit))
+        }
+    }
+    
+    private func unitPosition(for index: Int, unit: Unit) -> CGPoint {
+        let maxUnitSize: CGFloat = 16 // Maximum unit size (standard units)
+        let minSpacing: CGFloat = 4 // Minimum spacing between units
+        let effectiveRadius = (maxUnitSize / 2) + minSpacing // Account for unit radius + spacing
+        
+        // Calculate base radius ensuring units don't overlap
+        let unitCount = units.count
+        let baseRadius = max(effectiveRadius * 1.5, effectiveRadius * CGFloat(unitCount) / (2 * CGFloat.pi))
+        
+        // Scale radius based on map size but ensure minimum spacing
+        let scaledRadius = min(baseRadius, min(mapSize.width, mapSize.height) * 0.08)
+        let finalRadius = max(scaledRadius, effectiveRadius * 1.2) // Ensure minimum spacing always
+        
+        // Distribute units evenly around circle
+        let angle = Double(index) * (2 * Double.pi / Double(unitCount))
+        
+        // Add slight random offset for visual variety while maintaining spacing
+        let offsetAngle = angle + (Double(index) * 0.1) // Small offset based on index
         
         return CGPoint(
-            x: center.x + cos(angle) * radius,
-            y: center.y + sin(angle) * radius
+            x: center.x + cos(offsetAngle) * finalRadius,
+            y: center.y + sin(offsetAngle) * finalRadius
         )
     }
 }
@@ -196,7 +221,17 @@ struct UnitView: View {
         case .netrunner:
             return Color.blue // ACTIVATE NETRUNNERS
         case .drone:
-            return Color.gray // Related to BUILD HIDEOUT
+            return Color.green // Same as techies - drones are techie-operated
+        }
+    }
+    
+    // Function to get unit size based on type
+    private func sizeForUnitType(_ unitType: UnitType) -> CGFloat {
+        switch unitType {
+        case .drone:
+            return 8 // Half size of regular units
+        default:
+            return 16 // Standard size
         }
     }
     
@@ -205,18 +240,13 @@ struct UnitView: View {
             // Main unit circle with colored border matching action disc
             Circle()
                 .fill(gang.color)
-                .frame(width: 16, height: 16)
+                .frame(width: sizeForUnitType(unit.type), height: sizeForUnitType(unit.type))
                 .overlay(
                     Circle()
                         .stroke(borderColorForUnitType(unit.type), lineWidth: 2)
                 )
             
-            // Unit type indicator
-            if unit.type == .drone {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 6, height: 6)
-            }
+            // Unit type indicator (remove drone-specific indicator since size differentiates)
         }
     }
 }
