@@ -134,7 +134,7 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Enhanced District Intelligence Panel (Dec 28, 2024)
+### Enhanced District Intelligence Panel (Dec 28, 2024) - `cff2e7e`
 - **📊 Comprehensive Unit Analytics** - District info now shows total unit count and gang dominance ratios
 - **🎯 Strategic Intelligence** - Clear display of which gang dominates each district with unit count comparison  
 - **🎮 Enhanced Unit Breakdown** - Vertical layout with tactical roles (ASSAULT, SUPPORT, CYBER, RECON) for each unit type
