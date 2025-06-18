@@ -186,15 +186,29 @@ struct UnitView: View {
     let unit: Unit
     let gang: Gang
     
+    // Function to get border color based on unit type
+    private func borderColorForUnitType(_ unitType: UnitType) -> Color {
+        switch unitType {
+        case .solo:
+            return Color.orange // ACTIVATE SOLOS
+        case .techie:
+            return Color.green // ACTIVATE TECHIES  
+        case .netrunner:
+            return Color.blue // ACTIVATE NETRUNNERS
+        case .drone:
+            return Color.gray // Related to BUILD HIDEOUT
+        }
+    }
+    
     var body: some View {
         ZStack {
-            // Main unit circle
+            // Main unit circle with colored border matching action disc
             Circle()
                 .fill(gang.color)
                 .frame(width: 16, height: 16)
                 .overlay(
                     Circle()
-                        .stroke(Color.white, lineWidth: 2)
+                        .stroke(borderColorForUnitType(unit.type), lineWidth: 2)
                 )
             
             // Unit type indicator

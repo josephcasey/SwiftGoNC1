@@ -9,11 +9,22 @@ For all code changes and feature additions to the CyberpunkGoNC iOS app, follow 
 
 1. **Analyze the changes made** - Review what code was modified, what features were added/fixed
 2. **Update README.md** with:
-   - Brief description of the changes in the appropriate section
-   - Technical details about the implementation
-   - User-facing improvements or bug fixes
-   - Any new features or capabilities added
+   - Add NEW entry to "Recent Improvements" section at the END of the README
+   - Place new improvements at the TOP of the Recent Improvements list (reverse chronological order)
+   - Use format for new entry: "### [Feature Name] (MMM DD, YYYY)" (current date, no git hash since not yet committed)
+   - Update previous entries with git commit hashes: "### [Feature Name] (MMM DD, YYYY) - `hash`"
+   - Use `git log --oneline --date=short --pretty=format:"%h %ad %s" -10` to get commit hashes and dates
+   - Include technical details about the implementation
+   - Document user-facing improvements or bug fixes
+   - Explain any new features or capabilities added
 3. **Verify documentation accuracy** - Ensure the README reflects the current state of the app
+
+**README Structure Requirements:**
+- Recent Improvements section MUST be at the END of the README (after Development Notes)
+- New improvements MUST be added at the TOP of the Recent Improvements section
+- Most recent entry MUST have "(Latest)" suffix
+- Previous entries should NOT have "(Latest)" suffix
+- Use consistent formatting with bullet points and emoji indicators
 
 ### Step 2: Automated Deployment (Script-Driven)
 **After README is updated**, run the deployment script:

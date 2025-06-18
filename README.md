@@ -116,39 +116,6 @@ The app includes initial game state with:
 ✅ **Better Performance** - Native Swift vs web-based solution  
 ✅ **iOS Features** - Haptics, notifications, background processing  
 
-## 🛠 Recent Improvements
-
-### Development Pipeline Automation (Latest)
-- **🔧 Build-Test-Install Script** - Comprehensive automation for Swift build, testing, Xcode compilation, and simulator deployment
-- **🎯 Separated Concerns** - build-test-install.sh handles development testing, deploy-changes.sh handles git operations
-- **⚡ 8-Step Pipeline** - Automated: package build → tests → Xcode build → app location → simulator boot → install → launch → verify
-- **🧹 Clean UI** - Removed redundant district name text overlays (names visible in Night City map graphic)
-- **📱 Streamlined Testing** - One command deploys updated app to simulator for immediate testing
-
-### Enhanced Deployment Workflow (Latest)
-- **📝 Streamlined Process** - Refined two-step deployment: AI updates README, script handles git operations
-- **🔍 Smart Output Parsing** - Agent rules now parse deploy script output instead of running duplicate git commands
-- **⚡ Efficient Verification** - Script provides comprehensive git status, avoiding redundant terminal interactions
-- **🎯 Focused Automation** - Removed build/test verification from deploy script (handled separately with AI)
-
-### Layout Optimization
-- **🎨 Fixed Map Resizing Issue** - Map now maintains consistent size when district info panel expands
-- **📱 Better Screen Space Usage** - Removed redundant "NIGHT CITY Gang Territory Control" header
-- **🗺️ Optimized Map Position** - Map positioned higher on screen for better visibility
-- **📊 Enhanced District Info** - More space allocated for gang unit details and territory information
-
-### Night City Map Integration
-- **🗺️ Authentic Background** - Integrated high-quality Night City map (2.6MB) from original game assets
-- **🎯 Perfect Scaling** - Proper 2:3 aspect ratio maintains map proportions
-- **🔄 Smart Fallback** - Graceful handling of missing images with cyberpunk-styled placeholder
-
-### Interactive Action Discs (Latest)
-- **🎮 Action Disc System** - Added 6 interactive action disc types positioned on right side of map
-- **🎯 Game Mechanics** - ACTIVATE SOLOS, TECHIES, NETRUNNERS, BUILD HIDEOUT, UPGRADE CARDS, WILD actions
-- **🎨 Cyberpunk Styling** - Color-coded discs with authentic game aesthetics and touch interaction
-- **⚡ Dynamic Selection** - Real-time selection feedback with visual highlighting
-- **📱 Optimized Layout** - Strategic positioning alongside Night City map for enhanced gameplay
-
 ## 🛠 Next Steps
 
 1. **✅ Authentic Night City Map** - Successfully integrated high-quality background image
@@ -164,6 +131,45 @@ The app includes initial game state with:
 - Implements **proper touch handling** with coordinate scaling
 - **No external dependencies** - pure Swift/iOS solution
 - **Preview support** for rapid UI development
+
+## 🛠 Recent Improvements
+
+### Enhanced Unit Visualization (Jun 18, 2025)
+- **🎨 Unit-Action Disc Color Mapping** - Unit borders now match corresponding action disc colors for clear visual connection
+- **🎯 Strategic Clarity** - Orange borders for SOLOS, green for TECHIES, blue for NETRUNNERS, gray for DRONES
+- **🎮 Improved Gameplay UX** - Gang colors preserved in unit centers while borders indicate available actions
+- **⚡ Visual Harmony** - Perfect integration between unit types and action disc system for intuitive strategy
+
+### Development Pipeline Automation (Jun 18, 2025) - `0cfc102`
+- **🔧 Build-Test-Install Script** - Comprehensive automation for Swift build, testing, Xcode compilation, and simulator deployment
+- **🎯 Separated Concerns** - build-test-install.sh handles development testing, deploy-changes.sh handles git operations
+- **⚡ 8-Step Pipeline** - Automated: package build → tests → Xcode build → app location → simulator boot → install → launch → verify
+- **🧹 Clean UI** - Removed redundant district name text overlays (names visible in Night City map graphic)
+- **📱 Streamlined Testing** - One command deploys updated app to simulator for immediate testing
+
+### Interactive Action Discs (Jun 18, 2025) - `bf1a08b`
+- **🎮 Action Disc System** - Added 6 interactive action disc types positioned on right side of map
+- **🎯 Game Mechanics** - ACTIVATE SOLOS, TECHIES, NETRUNNERS, BUILD HIDEOUT, UPGRADE CARDS, WILD actions
+- **🎨 Cyberpunk Styling** - Color-coded discs with authentic game aesthetics and touch interaction
+- **⚡ Dynamic Selection** - Real-time selection feedback with visual highlighting
+- **📱 Optimized Layout** - Strategic positioning alongside Night City map for enhanced gameplay
+
+### Enhanced Deployment Workflow (Jun 17, 2025) - `d5464b9`
+- **📝 Streamlined Process** - Refined two-step deployment: AI updates README, script handles git operations
+- **🔍 Smart Output Parsing** - Agent rules now parse deploy script output instead of running duplicate git commands
+- **⚡ Efficient Verification** - Script provides comprehensive git status, avoiding redundant terminal interactions
+- **🎯 Focused Automation** - Removed build/test verification from deploy script (handled separately with AI)
+
+### Layout Optimization (Jun 17, 2025) - `9af1e41`
+- **🎨 Fixed Map Resizing Issue** - Map now maintains consistent size when district info panel expands
+- **📱 Better Screen Space Usage** - Removed redundant "NIGHT CITY Gang Territory Control" header
+- **🗺️ Optimized Map Position** - Map positioned higher on screen for better visibility
+- **📊 Enhanced District Info** - More space allocated for gang unit details and territory information
+
+### Night City Map Integration (Jun 17, 2025) - `f8bdb54`
+- **🗺️ Authentic Background** - Integrated high-quality Night City map (2.6MB) from original game assets
+- **🎯 Perfect Scaling** - Proper 2:3 aspect ratio maintains map proportions
+- **🔄 Smart Fallback** - Graceful handling of missing images with cyberpunk-styled placeholder
 
 ---
 
