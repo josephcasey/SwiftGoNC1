@@ -118,6 +118,38 @@ else
     print_error "App verification failed - app not found on simulator"
 fi
 
+# Step 9: Git Status for README Updates
+print_step "9" "Providing git information for README updates"
+echo ""
+echo -e "${CYAN}=== GIT STATUS FOR README UPDATES ===${NC}"
+echo -e "${YELLOW}Current Date: $(date '+%b %d, %Y')${NC}"
+echo ""
+
+# Get the most recent commit info
+echo -e "${CYAN}--- RECENT COMMITS (for README updates) ---${NC}"
+git log --oneline -5 --decorate --color=always
+
+echo ""
+echo -e "${CYAN}--- PREVIOUS FEATURE COMMIT INFO ---${NC}"
+LAST_COMMIT=$(git log --oneline -1 --format="%h %s")
+echo "Last commit: $LAST_COMMIT"
+
+# Show any uncommitted changes that would need documenting
+if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo ""
+    echo -e "${YELLOW}--- UNCOMMITTED CHANGES ---${NC}"
+    echo "Note: There are uncommitted changes that may need README documentation"
+    git status --porcelain
+fi
+
+echo ""
+echo -e "${CYAN}--- README UPDATE GUIDANCE ---${NC}"
+echo "• Use current date: $(date '+%b %d, %Y')"
+echo "• Previous feature commit for reference: $(git log --oneline -1 --format='%h')"
+echo "• When documenting new features, add commit hash AFTER deployment"
+echo -e "${CYAN}=== END GIT STATUS ===${NC}"
+print_success "Git information ready for README updates"
+
 # Success summary
 echo ""
 echo -e "${GREEN}🎉 Build-Test-Install Complete!${NC}"

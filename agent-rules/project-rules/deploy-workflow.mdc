@@ -7,17 +7,28 @@ For all code changes and feature additions to the CyberpunkGoNC iOS app, follow 
 ### Step 1: Documentation Update (AI-Driven)
 **Before running any deployment scripts**, the AI assistant must:
 
-1. **Analyze the changes made** - Review what code was modified, what features were added/fixed
-2. **Update README.md** with:
+1. **Run build-test-install first** - This provides git status information for README updates:
+   ```bash
+   ./scripts/build-test-install.sh
+   ```
+   The script's final step provides:
+   - Current date in correct format
+   - Recent commit history for reference
+   - Previous feature commit hash for updating README entries
+   - Guidance for proper README formatting
+
+2. **Analyze the changes made** - Review what code was modified, what features were added/fixed
+
+3. **Update README.md** using the git information from build-test-install:
    - Add NEW entry to "Recent Improvements" section at the END of the README
    - Place new improvements at the TOP of the Recent Improvements list (reverse chronological order)
-   - Use format for new entry: "### [Feature Name] (MMM DD, YYYY)" (current date, no git hash since not yet committed)
-   - Update previous entries with git commit hashes: "### [Feature Name] (MMM DD, YYYY) - `hash`"
-   - Use `git log --oneline --date=short --pretty=format:"%h %ad %s" -10` to get commit hashes and dates
+   - Use format for new entry: "### [Feature Name] (MMM DD, YYYY)" (use current date from git info, no commit hash until after deployment)
+   - Update previous entries with git commit hashes from the git interrogation output
    - Include technical details about the implementation
    - Document user-facing improvements or bug fixes
    - Explain any new features or capabilities added
-3. **Verify documentation accuracy** - Ensure the README reflects the current state of the app
+
+4. **Verify documentation accuracy** - Ensure the README reflects the current state of the app
 
 **README Structure Requirements:**
 - Recent Improvements section MUST be at the END of the README (after Development Notes)
@@ -58,10 +69,14 @@ The script handles:
 ## Example Workflow
 
 ```bash
-# 1. AI updates README.md with change description
+# 1. Run build-test-install to get git information and test the app
+./scripts/build-test-install.sh
+# (AI analyzes the git information output for README updates)
+
+# 2. AI updates README.md with change description using git info
 # (This happens through the AI assistant)
 
-# 2. Run deployment script
+# 3. Run deployment script
 ./scripts/deploy-changes.sh "🎨 Fix map resizing issue" "Removed header, fixed map height to prevent resizing when district info panel expands"
 ```
 

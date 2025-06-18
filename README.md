@@ -134,7 +134,15 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Enhanced District Intelligence Panel (Dec 28, 2024) - `cff2e7e`
+### Enhanced Build-Test-Install with Git Interrogation (Jun 18, 2025)
+- **📊 Git Status Integration** - Added comprehensive git information display at end of build-test-install pipeline
+- **📅 Date Standardization** - Provides current date in correct format for README updates
+- **🔍 Commit History Analysis** - Shows recent commits and previous feature commit hash for documentation reference
+- **⚡ Workflow Optimization** - README updates now use git interrogation output instead of manual git commands
+- **📝 Documentation Guidance** - Clear instructions on proper README formatting and commit hash handling
+- **🎯 Deployment Workflow Integration** - Updated deploy-workflow.mdc to incorporate git information from build step
+
+### Enhanced District Intelligence Panel (Jun 18, 2025) - `cff2e7e`
 - **📊 Comprehensive Unit Analytics** - District info now shows total unit count and gang dominance ratios
 - **🎯 Strategic Intelligence** - Clear display of which gang dominates each district with unit count comparison  
 - **🎮 Enhanced Unit Breakdown** - Vertical layout with tactical roles (ASSAULT, SUPPORT, CYBER, RECON) for each unit type
