@@ -134,7 +134,14 @@ The app includes initial game state with:
 
 ## 🛠 Recent Improvements
 
-### Enhanced Unit Visibility & Maelstrom Interactive Gameplay (Jun 18, 2025)
+### Updated Night City Map with District Features (Jun 20, 2025)
+- **🗺️ Enhanced Map Asset** - Updated to night-city-map19Jun-1.png with improved district visualization
+- **📍 District Points of Interest** - Map now includes circular markers and information breakout boxes for key locations
+- **🎯 Strategic Planning Ready** - Visual features prepared for future unit placement avoidance algorithms
+- **🏢 Authentic District Landmarks** - Important locations clearly marked for tactical consideration
+- **📊 Visual Information Architecture** - Structured layout supports both gameplay and information display needs
+
+### Enhanced Unit Visibility & Maelstrom Interactive Gameplay (Jun 18, 2025) - `8f68bb0`
 - **🎯 Drop Shadow Enhancement** - Added subtle drop shadows to unit dots for better visibility against Night City background
 - **⚡ Maelstrom Player Mode** - Assumed player controls Maelstrom gang for interactive unit highlighting
 - **🎮 Action Disc Unit Highlighting** - Units glow and scale up when their corresponding action disc is selected
